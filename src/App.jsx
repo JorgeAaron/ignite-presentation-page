@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import logo from "./assets/logo.png";
+import emailjs from "@emailjs/browser";
 
 export default function App() {
     const [darkMode, setDarkMode] = useState(true);
@@ -11,11 +12,52 @@ export default function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
+    const [form, setForm] = useState({
+    nombre: "",
+    email: "",
+    mensaje: "",
+  });
+
+
+const handleChange = (e) => {
+  setForm({
+    ...form,
+    [e.target.name]: e.target.value,
+  });
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  emailjs.send(
+    "service_48d53ty",
+    "template_5n0zkw6",
+    {
+      name: form.nombre,
+      email: form.email,
+      message: form.mensaje,
+    },
+    "8-mN58sZTAhNJqbNv"
+  )
+  .then(() => {
+    alert("Mensaje enviado ✅");
+    setForm({
+      nombre: "",
+      email: "",
+      mensaje: "",
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+    alert("Error al enviar ❌");
+  });
+};
+
   return (
-    <div className="bg-gray-950 text-white min-h-screen">
+    <div className="bg-gray-200 dark:bg-gray-950 text-white min-h-screen">
 
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-6 max-w-6xl mx-auto">
+      <nav className="flex justify-between items-center p-6 max-w-6xl mx-auto ">
 <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
   <img src={logo} alt="logo" className="w-9 h-6 rounded-full" />
         <h1 className="text-xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
@@ -24,8 +66,8 @@ export default function App() {
 </div>
 
         <div className="space-x-4 hidden md:block">
-          <a href="#" className="hover:text-red-500">Inicio</a>
-          <a href="#" className="hover:text-red-500">Contacto</a>
+          <a href="#inicio" className="text-gray-700 hover:text-gray-800 dark:text-white dark:hover:text-red-500">Inicio</a>
+          <a href="#contacto" className="text-gray-700 hover:text-gray-800 dark:text-white dark:hover:text-red-500">Contacto</a>
            
         </div>
         
@@ -45,15 +87,15 @@ export default function App() {
 
       {/* Hero */}
       <section className="text-center py-20 px-6">
-        <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-6xl bg-gray-900 font-bold mb-6 bg-gradient-to-r dark:from-red-500 dark:to-red-700  bg-clip-text text-transparent">
           Desarrollo de software a medida
         </h2>
 
-        <p className="text-gray-400 max-w-2xl mx-auto mb-6">
+        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
           Creamos aplicaciones web, móviles y sistemas personalizados para hacer crecer tu negocio.
         </p>
 
-        <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+        <button className="bg-gray-600 hover:bg-gray-800 dark:bg-red-600 dark:hover:bg-red-700 text-white px-6 py-3 rounded-lg">
           Solicitar cotización
         </button>
       </section>
@@ -70,34 +112,80 @@ export default function App() {
         ))}
       </section>
 
-      {/* Portafolio */}
-      <section className="max-w-6xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">Proyectos</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((p) => (
-            <div key={p} className="bg-gradient-to-br from-gray-900 to-gray-800 p-4 rounded-2xl border border-gray-800">
-              <div className="h-40 bg-gradient-to-r from-red-600/20 to-red-800/20 rounded mb-4"></div>
-              <h3 className="font-semibold">Proyecto {p}</h3>
-              <p className="text-gray-400 text-sm">
-                Sistema desarrollado para optimizar procesos.
-              </p>
-            </div>
-          ))}
+       {/* CONTACTO (reemplaza proyectos) */}
+      <section id="contacto" className="py-20 px-6 dark:bg-gray-900">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6 text-center bg-blue dark:bg-gradient-to-r dark:from-red-500 dark:to-red-700 bg-clip-text text-transparent">
+            Contáctanos
+          </h2>
+
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-10">
+            Cuéntanos sobre tu proyecto y te responderemos lo antes posible.
+          </p>
+
+          <form
+            onSubmit={handleSubmit}
+            className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl shadow-sm space-y-6"
+          >
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={form.nombre}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-white"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Correo"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-white"
+            />
+
+            <textarea
+              name="mensaje"
+              placeholder="Mensaje"
+              rows="5"
+              value={form.mensaje}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-white"
+            />
+
+            <button className="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 rounded-lg dark:bg-red-500 dark:hover:bg-red-700 transition">
+              Enviar mensaje
+            </button>
+          </form>
+
+          <div className="mt-10 text-center">
+            <a
+              href="https://wa.me/5216221453169"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500 transition"
+            >
+              Contactar por WhatsApp
+            </a>
+          </div>
         </div>
       </section>
-
       {/* CTA */}
+
+
+
       <section className="text-center py-20">
-        <h2 className="text-3xl font-bold mb-4">
+        <h2 className="text-gray-600 dark:text-white text-3xl font-bold mb-4">
           ¿Listo para tu proyecto?
         </h2>
-        <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+        <button className="bg-gray-600 hover:bg-gray-800 dark:hover:bg-red-700 dark:bg-red-600 text-white px-6 py-3 rounded-lg">
           Cotizar
         </button>
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-6 text-gray-500">
+      <footer className="text-center py-6 dark:text-gray-500">
         © 2026 Ignite
       </footer>
 
