@@ -113,13 +113,13 @@ const handleSubmit = (e) => {
       </section>
 
        {/* CONTACTO (reemplaza proyectos) */}
-      <section id="contacto" className="py-20 px-6 dark:bg-gray-900">
+      <section id="contacto" className="py-20 px-6 bg-gray-700 dark:bg-gray-900">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center bg-blue dark:bg-gradient-to-r dark:from-red-500 dark:to-red-700 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-6 text-center bg-white dark:bg-gradient-to-r dark:from-red-500 dark:to-red-700 bg-clip-text text-transparent">
             Contáctanos
           </h2>
 
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-10">
+          <p className="text-center text-white dark:text-gray-400 mb-10">
             Cuéntanos sobre tu proyecto y te responderemos lo antes posible.
           </p>
 
