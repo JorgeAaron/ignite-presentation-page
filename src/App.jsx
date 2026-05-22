@@ -95,7 +95,7 @@ const handleSubmit = (e) => {
           Creamos aplicaciones web, móviles y sistemas personalizados para hacer crecer tu negocio.
         </p>
 
-        <button className="bg-gray-600 hover:bg-gray-800 dark:bg-red-600 dark:hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+        <button href="#contacto" className="bg-gray-600 hover:bg-gray-800 dark:bg-red-600 dark:hover:bg-red-700 text-white px-6 py-3 rounded-lg">
           Solicitar cotización
         </button>
       </section>
@@ -179,7 +179,7 @@ const handleSubmit = (e) => {
         <h2 className="text-gray-600 dark:text-white text-3xl font-bold mb-4">
           ¿Listo para tu proyecto?
         </h2>
-        <button className="bg-gray-600 hover:bg-gray-800 dark:hover:bg-red-700 dark:bg-red-600 text-white px-6 py-3 rounded-lg">
+        <button href="#contacto" className="bg-gray-600 hover:bg-gray-800 dark:hover:bg-red-700 dark:bg-red-600 text-white px-6 py-3 rounded-lg">
           Cotizar
         </button>
       </section>
