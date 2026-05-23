@@ -94,10 +94,11 @@ const handleSubmit = (e) => {
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
           Creamos aplicaciones web, móviles y sistemas personalizados para hacer crecer tu negocio.
         </p>
-
-        <button href="#contacto" className="bg-gray-600 hover:bg-gray-800 dark:bg-red-600 dark:hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+        <a href="#contacto">
+        <button className="bg-gray-600 hover:bg-gray-800 dark:bg-red-600 dark:hover:bg-red-700 text-white px-6 py-3 rounded-lg">
           Solicitar cotización
         </button>
+        </a>
       </section>
 
       {/* Servicios */}
@@ -179,9 +180,11 @@ const handleSubmit = (e) => {
         <h2 className="text-gray-600 dark:text-white text-3xl font-bold mb-4">
           ¿Listo para tu proyecto?
         </h2>
+        <a href="#contacto">
         <button href="#contacto" className="bg-gray-600 hover:bg-gray-800 dark:hover:bg-red-700 dark:bg-red-600 text-white px-6 py-3 rounded-lg">
           Cotizar
         </button>
+        </a>
       </section>
 
       {/* Footer */}
